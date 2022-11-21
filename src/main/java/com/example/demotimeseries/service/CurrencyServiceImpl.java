@@ -20,22 +20,22 @@ public class CurrencyServiceImpl implements CurrencyServiceAPI {
 
     @Override
     public ResponseEntity<String> getRemoteCurrence(Date startDate, Date endDate, String base, String symbols) {
-        String urlStr = "http://data.fixer.io/api/timeseries?start_date=2018-02-20&end_date=2018-02-26&base=RUB&symbols=EUR";
+    String urlStr = "http://data.fixer.io/api/latest/timeseries?access_key=7WWQcfHr7eQshgbGejQHplOfBvH2cB1c&start_date=2018-02-20&end_date=2018-02-26&base=RUB&symbols=EUR";
 
-        Map<String, Object> data = new LinkedHashMap<>();
+    Map<String, Object> data = new LinkedHashMap<>();
 
-        data.put("start_date",  startDate);
-        data.put("end_date",  endDate);
-        data.put("base", base);
-        data.put("symbols",  symbols);
+    data.put("start_date",  startDate);
+    data.put("end_date",  endDate);
+    data.put("base", base);
+    data.put("symbols",  symbols);
 
 
     RestTemplate template = new RestTemplate();
 
 
     HttpHeaders headers = new HttpHeaders();
-    headers.addIfAbsent("apikey", "7WWQcfHr7eQshgbGejQHplOfBvH2cB1c");
-    String object = template.getForObject(urlStr, String.class );
+    headers.add("access_key", "7WWQcfHr7eQshgbGejQHplOfBvH2cB1c");
+
     HttpEntity<Map<String, Object>> request = new HttpEntity<>(data, headers);
 
     return template.exchange(urlStr, HttpMethod.GET, request, String.class );
