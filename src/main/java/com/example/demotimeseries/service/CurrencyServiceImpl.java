@@ -31,7 +31,7 @@ public class CurrencyServiceImpl implements CurrencyServiceAPI {
     Response response = client.newCall(request).execute();
         System.out.println(response.body().string());
 
-        return  response.body();
+        return  response;
         
         
 //    String urlStr = "http://data.fixer.io/api/latest/timeseries?access_key=7WWQcfHr7eQshgbGejQHplOfBvH2cB1c&start_date=2018-02-20&end_date=2018-02-26&base=RUB&symbols=EUR";
