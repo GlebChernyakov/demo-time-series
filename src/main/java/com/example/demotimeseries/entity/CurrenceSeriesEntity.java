@@ -31,12 +31,6 @@ public class CurrenceSeriesEntity {
     private Date end_date;
 
     @Column(nullable = false)
-    private String base;
-
-    @Column(nullable = false)
-    private String symbols;
-
-    @Column(nullable = false)
     private Double value;
 
     @Override

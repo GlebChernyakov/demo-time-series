@@ -22,10 +22,10 @@ public class ValuteController implements TimeSeriesControllerAPI{
 
     @Override
     @GetMapping
-    public ResponseEntity<String> getMoneyTimeSeries(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date start_date,
+    public String getMoneyTimeSeries(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date start_date,
                                                      @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date end_date,
-                                                     @RequestParam String base,
-                                                     @RequestParam String symbols) {
+                                                     @RequestParam(required = false) String base,
+                                                     @RequestParam(required = false) String symbols) {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("apiKey", "7WWQcfHr7eQshgbGejQHplOfBvH2cB1c");
 
