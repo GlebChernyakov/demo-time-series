@@ -1,6 +1,7 @@
 package com.example.demotimeseries.service;
 
-import com.example.demotimeseries.entity.CurrenceSeriesEntity;
+import com.example.demotimeseries.entity.CurrencySeriesEntity;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import lombok.RequiredArgsConstructor;
 
 import lombok.SneakyThrows;
@@ -17,19 +18,20 @@ public class CurrencyServiceImpl implements CurrencyServiceAPI {
 
     @SneakyThrows
     @Override
-    public String getRemoteCurrence(Date startDate, Date endDate, String base, String symbols) {
+    public Response getRemoteCurrence(Date startDate, Date endDate, String base, String symbols) {
 
 
         OkHttpClient client = new OkHttpClient().newBuilder().build();
 
         Request request = new Request.Builder()
-                .url("https://api.apilayer.com/fixer/timeseries?start_date=2018-02-18&end_date=2018-02-29")
+                .url("https://api.apilayer.com/fixer/timeseries?start_date=2018-02-18&end_date=2018-02-29&base=RUB&symbols=eur")
                 .addHeader("apikey", "7WWQcfHr7eQshgbGejQHplOfBvH2cB1c")
                 .get()
             .build();
     Response response = client.newCall(request).execute();
         System.out.println(response.body().string());
-        return  response.body().string();
+
+        return  response.body();
         
         
 //    String urlStr = "http://data.fixer.io/api/latest/timeseries?access_key=7WWQcfHr7eQshgbGejQHplOfBvH2cB1c&start_date=2018-02-20&end_date=2018-02-26&base=RUB&symbols=EUR";
@@ -54,7 +56,7 @@ public class CurrencyServiceImpl implements CurrencyServiceAPI {
     }
 
     @Override
-    public CurrenceSeriesEntity getLocalCurrence() {
+    public CurrencySeriesEntity getLocalCurrence() {
         return null;
     }
 }
